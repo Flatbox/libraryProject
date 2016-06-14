@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/libraryProject/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="home.xhtml" x="122" y="562" id="pf14656432543270" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14656432543271 pf14656543444677 pf14656543444678" path="/home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="yolo.xhtml" x="228" y="432" id="pf14656432543282" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14656432543271" path="/yolo.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="authList.xhtml" x="209" y="708" id="pf14656542848224" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14656543444677" path="/authList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="categories.xhtml" x="338" y="562" id="pf14656542848225" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf146589705203110" inlinks="pf14656543444678" path="/categories.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="bookCategory.xhtml" x="554" y="562" id="pf14658928724049" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf146589705203110" path="/bookCategory.xhtml"/>
+  <links id="pf14656432543271" target="pf14656432543282" source="pf14656432543270" outcome="ok" fromaction="#{libraryBean.test}"/>
+  <links id="pf14656543444677" target="pf14656542848224" source="pf14656432543270" outcome="authList"/>
+  <links id="pf14656543444678" target="pf14656542848225" source="pf14656432543270" outcome="categories"/>
+  <links id="pf146589705203110" target="pf14658928724049" source="pf14656542848225" outcome="ok" fromaction="#{libraryBean.bookCategory(c.id)}"/>
+</pageflow:Pageflow>

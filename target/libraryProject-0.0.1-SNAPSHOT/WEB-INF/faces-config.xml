@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+	<managed-bean>
+		<managed-bean-name>libraryBean</managed-bean-name>
+		<managed-bean-class>ch.hevs.managedbeans.LibraryBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<display-name>home.xhtml</display-name>
+		<from-view-id>/home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>authList</from-outcome>
+			<to-view-id>/authList.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>categories</from-outcome>
+			<to-view-id>/categories.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<display-name>categories.xhtml</display-name>
+		<from-view-id>/categories.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{libraryBean.bookCategory(c.id)}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/bookCategory.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+</faces-config>
