@@ -21,13 +21,13 @@ public class LibraryBean {
 	//Books
 	private Book book;
 	private String bookTitle;
-	List <Book> books;
+	private List <Book> books;
 	
 	//Categories
 	private Category category;
 	private long categoryid;
 	
-	 List<Category> categories;
+	private List<Category> categories;
 	
 	
 	
@@ -59,7 +59,7 @@ public class LibraryBean {
 	
 	public String bookCategory(long id){
 		setCategoryid(id);
-		this.books = library.getBooksByCategory(id);
+		this.setBooks(library.getBooksByCategory(id));
 		
 		return  "ok";
 	}
@@ -115,6 +115,16 @@ public class LibraryBean {
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
+	}
+
+
+	public List <Book> getBooks() {
+		return books;
+	}
+
+
+	public void setBooks(List <Book> books) {
+		this.books = books;
 	}
 
 

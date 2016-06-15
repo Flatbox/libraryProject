@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@org.hibernate.annotations.DiscriminatorOptions(force=true)
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class Book {
 	

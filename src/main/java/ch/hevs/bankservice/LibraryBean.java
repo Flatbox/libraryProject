@@ -52,7 +52,7 @@ public class LibraryBean implements Library {
 	@Override
 	public List<Book> getBooksByCategory(long id) {
 		
-		Query query = em.createQuery("SELECT b FROM Book b, IN(b.categories) c, WHERE c.id=:id");
+		Query query = em.createQuery("SELECT b FROM Book b, IN(b.categories) c WHERE c.id=:id");
 		query.setParameter("id", id);
 		return (List<Book>) query.getResultList();
 	}
