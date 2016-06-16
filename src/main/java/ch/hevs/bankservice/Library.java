@@ -15,6 +15,8 @@ public interface Library {
 	
 	public List<Book> booksList();
 	
+	public void updateTaken(AudioBook audiobook);
+	
 	//Categories
 	public List<Category> getCategories();
 	

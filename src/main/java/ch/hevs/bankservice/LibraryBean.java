@@ -6,9 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
@@ -23,6 +27,7 @@ public class LibraryBean implements Library {
 
 	@PersistenceContext(name="libraryPU")
 	private EntityManager em;
+	private UserTransaction tx;
 	
 	
 	// Fausse méthode sans utiliser la base de donnée
@@ -74,8 +79,8 @@ public class LibraryBean implements Library {
 
 	@Override
 	public List<Book> booksList() {
-		List<Book> booksList = (List<Book>) em.createQuery("FROM Book b WHERE b.DTYPE='1'").getResultList();
-		return booksList;
+		Query query = em.createQuery("FROM Book b");
+		return (List<Book>) query.getResultList();
 	}
 
 	@Override
@@ -89,6 +94,13 @@ public class LibraryBean implements Library {
 		List<Ebook> ebooksList = (List<Ebook>) em.createQuery("FROM Ebook e").getResultList();
 		return ebooksList;
 	}
+
+	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
+	public void updateTaken(AudioBook audiobook) {
+		System.out.println(audiobook.getId());
+		audiobook.setTaken(true);
+		}
+	
 	
 
 }

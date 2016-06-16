@@ -10,22 +10,15 @@ import javax.persistence.OneToMany;
 @Entity
 public class AudioReader extends Person {
 	
-	//Relations
-	@OneToMany(mappedBy ="reader", cascade = CascadeType.REMOVE) //TODO trouver le cascade type correct
-	private Set<AudioBook> audioBooks;
 	
-	//Constructor
-	public AudioReader() {
-		super();
-		
-	}
+	//Constructors
+		public AudioReader() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
 
-	public AudioReader(String firstname, String lastname, Date birthday, Date deathday) {
-		super(firstname, lastname, birthday, deathday);
 		
-	}
-	public AudioReader(String firstname, String lastname, Date birthday){
-		super(firstname, lastname, birthday);
-	}
+
+
 
 }

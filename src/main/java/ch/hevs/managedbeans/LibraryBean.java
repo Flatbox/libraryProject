@@ -25,6 +25,7 @@ public class LibraryBean {
 	private Book book;
 	private String bookTitle;
 	private List<Book> books;
+	private AudioBook audiobook;
 	private List<AudioBook> audiobooks;
 	private List<Ebook> ebooks;
 	
@@ -62,6 +63,12 @@ public class LibraryBean {
 		
 	}
 	
+
+	public void updateTaken(AudioBook audiobook) {
+		library.updateTaken(audiobook);
+		
+	}
+
 
 	//Books
 	public String getBookTitle() {
