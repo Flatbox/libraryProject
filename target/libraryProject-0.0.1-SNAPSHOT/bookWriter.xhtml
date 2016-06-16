@@ -4,19 +4,19 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
+
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
-<h:outputLabel value="LISTE D'AUTEURS"></h:outputLabel>
-
-	<h:form>
-	<h:dataTable value="#{libraryBean.writers}" var="w">
-				<h:column>
-					<h:commandLink action="#{libraryBean.bookWriter(w.id)}">						
-						<h:outputText value="#{w.firstname}"></h:outputText>
-					</h:commandLink>
-				</h:column>
+		<h:outputLabel value="livres par auteur "></h:outputLabel>
+		<h:outputLabel value="#{libraryBean.writerid}"></h:outputLabel>
+		<br></br>
+		<h:form>
+			<h:dataTable value="#{libraryBean.books}" var="b">
+			<h:column>
+			<h:outputLabel value="#{b.title}"></h:outputLabel>
+			</h:column>
 			</h:dataTable>
-	</h:form>
-		</ui:define>
+		</h:form>
+	</ui:define>
 </ui:composition>
 </html>

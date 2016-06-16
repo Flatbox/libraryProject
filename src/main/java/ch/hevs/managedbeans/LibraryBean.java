@@ -11,8 +11,11 @@ import javax.naming.NamingException;
 
 
 import ch.hevs.bankservice.Library;
+import ch.hevs.businessobject.AudioBook;
 import ch.hevs.businessobject.Book;
 import ch.hevs.businessobject.Category;
+import ch.hevs.businessobject.Ebook;
+import ch.hevs.businessobject.Writer;
 
 
 
@@ -25,9 +28,16 @@ public class LibraryBean {
 	//Books
 	private Book book;
 	private String bookTitle;
+<<<<<<< HEAD
 	private String publicationDate;
 	private String isbn;
 	private List <Book> books;
+=======
+	private List<Book> books;
+	private AudioBook audiobook;
+	private List<AudioBook> audiobooks;
+	private List<Ebook> ebooks;
+>>>>>>> origin/master
 	
 	//Categories
 	private Category category;
@@ -35,6 +45,12 @@ public class LibraryBean {
 	private String categoryname;
 	
 	private List<Category> categories;
+	
+	//Writers
+	private Writer writer;
+	private long writerid;
+	private String writerLastname;
+	private List<Writer> writers;
 	
 	
 	
@@ -46,11 +62,27 @@ public class LibraryBean {
 		// JNDI
     	InitialContext ctx = new InitialContext();
 		library = (Library) ctx.lookup("java:global/libraryProject-0.0.1-SNAPSHOT/LibraryBean!ch.hevs.bankservice.Library");
+<<<<<<< HEAD
+=======
+		//Books
+		this.bookTitle = library.getBook().getTitle();
+		this.books = library.booksList();
+		this.audiobooks=library.audiobooksList();
+		this.ebooks=library.ebooksList();
+>>>>>>> origin/master
 		//Categories
 		this.categories = library.getCategories();
+		//Writer
+		this.writers = library.getWriters();
 		
 	}
 	
+
+	public void updateTaken(AudioBook audiobook) {
+		library.updateTaken(audiobook);
+		
+	}
+
 
 	//Books
 	public String getBookTitle() {
@@ -90,9 +122,44 @@ public class LibraryBean {
 		setCategoryname(library.getCategoryName(categories.get((int) id/10 - 1)));
 		this.setBooks(library.getBooksByCategory(id));
 		
-		return  "ok";
+		return "ok";
+
 	}
 	
+	//Writer
+	
+	public String bookWriter(long id){
+		setWriterid(id);
+		this.setBooks(library.getBooksByWriter(id));
+		
+		return "ok";
+	}
+<<<<<<< HEAD
+=======
+	
+
+
+	//Getters & Setters
+>>>>>>> origin/master
+	
+	public void setWriters(List<Writer> writers) {
+		this.writers = writers;
+		
+	}
+	
+	public List<Writer> getWriters(){
+		return writers;
+	}
+
+
+	public void setWriterid(long writerid) {
+		this.writerid = writerid;
+		
+	}
+	
+	public Long getWriterid(){
+		return writerid;
+	}
 	
 	
 	//Getters & Setters	
@@ -169,6 +236,7 @@ public class LibraryBean {
 	}
 
 
+<<<<<<< HEAD
 	public String getPublicationDate() {
 		return publicationDate;
 	}
@@ -186,6 +254,45 @@ public class LibraryBean {
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+=======
+	public Writer getWriter() {
+		return writer;
+	}
+
+
+	public void setWriter(Writer writer) {
+		this.writer = writer;
+	}
+
+
+	public String getWriterLastname() {
+		return writerLastname;
+	}
+
+
+	public void setWriterLastname(String writerLastname) {
+		this.writerLastname = writerLastname;
+	}
+
+
+	public List<AudioBook> getAudiobooks() {
+		return audiobooks;
+	}
+
+
+	public void setAudiobooks(List<AudioBook> audiobooks) {
+		this.audiobooks = audiobooks;
+	}
+
+
+	public List<Ebook> getEbooks() {
+		return ebooks;
+	}
+
+
+	public void setEbooks(List<Ebook> ebooks) {
+		this.ebooks = ebooks;
+>>>>>>> origin/master
 	}
 
 

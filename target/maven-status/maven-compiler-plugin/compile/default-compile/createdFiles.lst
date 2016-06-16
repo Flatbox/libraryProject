@@ -3,7 +3,6 @@ ch\hevs\businessobject\Ebook.class
 ch\hevs\managedbeans\LibraryBean.class
 ch\hevs\businessobject\Writer.class
 ch\hevs\bankservice\LibraryBean.class
-ch\hevs\businessobject\AudioReader.class
 ch\hevs\businessobject\Book.class
 ch\hevs\businessobject\Person.class
 ch\hevs\businessobject\AudioBook.class
