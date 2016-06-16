@@ -12,9 +12,11 @@ import javax.persistence.Query;
 
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
-
+import ch.hevs.businessobject.AudioBook;
 import ch.hevs.businessobject.Book;
 import ch.hevs.businessobject.Category;
+import ch.hevs.businessobject.Ebook;
+import ch.hevs.businessobject.Writer;
 
 @Stateless
 public class LibraryBean implements Library {
@@ -52,9 +54,40 @@ public class LibraryBean implements Library {
 	@Override
 	public List<Book> getBooksByCategory(long id) {
 		
-		Query query = em.createQuery("SELECT b FROM Book b, IN(b.categories) c WHERE c.id=:id");
+		Query query = em.createQuery("FROM Book b, IN(b.categories) c WHERE c.id=:id");
 		query.setParameter("id", id);
 		return (List<Book>) query.getResultList();
+	}
+
+	@Override
+	public List<Writer> getWriters() {
+		List<Writer> writerList = (List<Writer>) em.createQuery("FROM Writer w").getResultList();
+		return writerList;
+	}
+
+	@Override
+	public List<Book> getBooksByWriter(long id) {
+		Query query = em.createQuery("SELECT b FROM Book b, IN(b.writers) w WHERE w.id=:id");
+		query.setParameter("id", id);
+		return (List<Book>) query.getResultList();
+	}
+
+	@Override
+	public List<Book> booksList() {
+		List<Book> booksList = (List<Book>) em.createQuery("FROM Book b WHERE b.DTYPE='1'").getResultList();
+		return booksList;
+	}
+
+	@Override
+	public List<AudioBook> audiobooksList() {
+		List<AudioBook> audiobooksList = (List<AudioBook>) em.createQuery("FROM AudioBook ab").getResultList();
+		return audiobooksList;
+	}
+
+	@Override
+	public List<Ebook> ebooksList() {
+		List<Ebook> ebooksList = (List<Ebook>) em.createQuery("FROM Ebook e").getResultList();
+		return ebooksList;
 	}
 	
 
