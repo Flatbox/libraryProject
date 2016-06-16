@@ -1,5 +1,6 @@
 ch\hevs\bankservice\Library.class
 ch\hevs\businessobject\Ebook.class
+ch\hevs\managedbeans\LibraryBean.class
 ch\hevs\businessobject\Writer.class
 ch\hevs\bankservice\LibraryBean.class
 ch\hevs\businessobject\AudioReader.class

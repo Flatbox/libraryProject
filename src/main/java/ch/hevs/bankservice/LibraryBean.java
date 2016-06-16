@@ -1,17 +1,14 @@
 package ch.hevs.bankservice;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
-
 
 import ch.hevs.businessobject.Book;
 import ch.hevs.businessobject.Category;
@@ -22,33 +19,25 @@ public class LibraryBean implements Library {
 	@PersistenceContext(name="libraryPU")
 	private EntityManager em;
 	
+	@Resource
+	private SessionContext ctx;
 	
-	// Fausse méthode sans utiliser la base de donnée
-	@Override
-	public Book getBook() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-		Date date = new Date();
-		String ladate = "01/01/1999";
-		
-		try {
-			date = dateFormat.parse(ladate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Book book = new Book("Istambul le début de l'asie ?" ,date  , "A11585A");
-		return book;
-	}
-
-	// Temporaire
-	
+	//Category
 	@Override
 	public List<Category> getCategories() {
 		List<Category> categoryList = (List<Category>) em.createQuery("SELECT ath FROM Category ath").getResultList();
 		return categoryList;
 	}
+	
+	@Override
+	public String getCategoryName(Category c) {
+		
+		String catname = c.getName();
+		
+		return catname;
+	}
 
+	//Books
 	@Override
 	public List<Book> getBooksByCategory(long id) {
 		
@@ -56,6 +45,42 @@ public class LibraryBean implements Library {
 		query.setParameter("id", id);
 		return (List<Book>) query.getResultList();
 	}
+
+		//Add Book
+	
+	@Override
+	public void addBook(Book b, Category c) {
+		
+		//Programmic Security
+		if (ctx.isCallerInRole("administrator")) {
+			b.addCategory(c);
+			
+			em.merge(b);
+		}
+		
+		
+		
+	}
+
+
+	@Override
+	public void deleteBook(long id) {
+		//Programmic Security
+		if (ctx.isCallerInRole("administrator")) {
+			Query query = em.createQuery("SELECT b FROM Book b WHERE b.id =:id");
+			query.setParameter("id", id);
+			
+			Book book = (Book)query.getSingleResult();
+			
+			em.remove(book);
+			em.flush();
+		}
+
+	}
+
+
+
+	
 	
 
 }

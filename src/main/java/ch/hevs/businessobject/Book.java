@@ -2,7 +2,8 @@ package ch.hevs.businessobject;
 
 
 
-import java.util.Date;
+
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,64 +14,74 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.hsqldb.lib.HashSet;
+
 
 @Entity
 @org.hibernate.annotations.DiscriminatorOptions(force=true)
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Book {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 	private String title;
-	@Temporal(TemporalType.DATE)
-	private Date publicationDate;
-	
+	private String publicationDate;
+	private String isbn;
+
 	//Relations
 	@ManyToMany(cascade= CascadeType.REFRESH) //TODO Vérifier le type de cascade pour voir s'il est correspondant
 	private Set<Writer> writers;
-	
+
 	public Set<Writer> getWriters(){
 		return writers;
 	}
-	
+
 	public void setWriters(Set<Writer> writers){
-		
+
 		this.writers = writers;
 	}
-	
+
 	public void addWriter(Writer writer){
 		writers.add(writer);
 	}
-	
+
 	@ManyToMany(cascade= CascadeType.REFRESH)//TODO Vérifier le type de cascade pour voir s'il est correspondant
 	private Set<Category> categories;
-	
+
 	public Set<Category> getCategories(){
 		return categories;
 	}
-	
+
 	public void setCategory(Set<Category> categories){
-		
+
 		this.categories = categories;
 	}
-	
+
 	public void addCategory(Category category){
 		categories.add(category);
 	}
 
-	
+
 	// Constructors
-	
-	public Book(String title, Date publicationDate, String isbn) {
-		super();
+
+	public Book(String title, String publicationDate, String isbn) {
+
+		this.categories = new java.util.HashSet <Category>();
 		this.title = title;
 		this.publicationDate = publicationDate;
 		this.isbn = isbn;
+		
 	}
-	
+	public Book(String title, String isbn) {
+
+		this.title = title;
+		
+		this.isbn = isbn;
+		
+	}
+
 	public Book() {
 		super();
 	}
@@ -88,10 +99,10 @@ public class Book {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Date getPublicationDate() {
+	public String getPublicationDate() {
 		return publicationDate;
 	}
-	public void setPublicationDate(Date publicationDate) {
+	public void setPublicationDate(String publicationDate) {
 		this.publicationDate = publicationDate;
 	}
 	public String getIsbn() {
@@ -100,8 +111,8 @@ public class Book {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	private String isbn;
 	
-	
+
+
 
 }

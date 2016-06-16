@@ -31,5 +31,7 @@
 			<to-view-id>/bookCategory.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+
 
 </faces-config>

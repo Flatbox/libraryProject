@@ -7,15 +7,54 @@
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
-		<h:outputLabel value="livres par categorie "></h:outputLabel>
-		<h:outputLabel value="#{libraryBean.categoryid}"></h:outputLabel>
+	<h1><h:outputLabel value="Livres de categorie  "></h:outputLabel>
+		<h:outputLabel value="#{libraryBean.categoryname}"></h:outputLabel></h1>
+		
 		<br></br>
 		<h:form>
 			<h:dataTable value="#{libraryBean.books}" var="b">
-			<h:column>
-			<h:outputLabel value="#{b.title}"></h:outputLabel>
-			</h:column>
+				<h:column>
+					<f:facet name="header">ISBN</f:facet>
+					<h:outputLabel value="#{b.isbn}"></h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Titre</f:facet>
+					<h:outputLabel value="#{b.title}"></h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Date de publication</f:facet>
+					<h:outputLabel value="#{b.publicationDate}"></h:outputLabel>
+				</h:column>
+				<h:column>
+					<h:commandButton action="#{libraryBean.deleteBook(b.id)}">SUPPRIMER</h:commandButton>
+				</h:column>
 			</h:dataTable>
+		</h:form>
+		<br></br>
+		<br></br>
+		<h1>Ajout d'un livre</h1>
+		<h:form>
+			<table>
+				<tr>
+					<td><b>ISBN</b></td>
+					<td><h:inputText id="isbn" value="#{libraryBean.isbn}" /></td>
+				</tr>
+				<tr>
+					<td><b>Titre</b></td>
+					<td><h:inputText id="bookTitle"
+							value="#{libraryBean.bookTitle}" /></td>
+				</tr>
+				<tr>
+					<td><b>Date de publication</b></td>
+					<td><h:inputText id="publicationDate"
+							value="#{libraryBean.publicationDate}" /></td>
+				</tr>
+
+			</table>
+			<h:commandLink action="#{libraryBean.addBook()}">
+							<h:outputText value="AJOUTER"></h:outputText>
+			</h:commandLink>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>

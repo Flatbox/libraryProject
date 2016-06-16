@@ -11,18 +11,16 @@
 		<h:outputLabel value="Welcome to the International Library"></h:outputLabel>
 		<br></br>
 		<h:form>
-			<h:commandLink action="transferForm">
-				<h:outputText value="Start new transfer" />
-				<h:commandButton action="#libraryBean.test">Yolo</h:commandButton>
-			</h:commandLink>
-			<h:commandLink action="authList">
-				<h:outputText value="Authors" />
+			<h2>
+				<h:commandLink action="authList">
+					<h:outputText value="Authors" />
+				</h:commandLink>
+				<br></br>
+				<h:commandLink action="categories">
+					<h:outputText value="Books" />
 
-			</h:commandLink>
-			<h:commandLink action="categories">
-				<h:outputText value="Books" />
-
-			</h:commandLink>
+				</h:commandLink>
+			</h2>
 		</h:form>
 	</ui:define>
 </ui:composition>

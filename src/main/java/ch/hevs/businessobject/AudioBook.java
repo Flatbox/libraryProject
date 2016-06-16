@@ -20,7 +20,7 @@ public class AudioBook extends Book {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AudioBook(String title, Date publicationDate, String isbn) {
+	public AudioBook(String title, String publicationDate, String isbn) {
 		super(title, publicationDate, isbn);
 		// TODO Auto-generated constructor stub
 	}

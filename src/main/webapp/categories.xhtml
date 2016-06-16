@@ -7,15 +7,16 @@
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
-		<h:outputLabel value="CATEGORIES DE LIVRES"></h:outputLabel>
-		<br></br>
-		<h:outputLabel value="#{libraryBean.bookTitle}"></h:outputLabel>
-		<br></br>
+		<h1>
+			<h:outputLabel value="CATEGORIES DE LIVRES"></h:outputLabel>
+		</h1>
 		<h:form>
 			<h:dataTable value="#{libraryBean.categories}" var="c">
 				<h:column>
-					<h:commandLink action="#{libraryBean.bookCategory(c.id)}">						
-						<h:outputText value="#{c.name}"></h:outputText>
+					<h:commandLink action="#{libraryBean.bookCategory(c.id)}">
+						<h3>
+							<h:outputText value="#{c.name}"></h:outputText>
+						</h3>
 					</h:commandLink>
 				</h:column>
 			</h:dataTable>

@@ -1,5 +1,6 @@
 package ch.hevs.businessobject;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -19,7 +20,8 @@ public class Category {
 	
 	//Constructors
 	public Category(String name, String description) {
-		super();
+		
+		this.books = new HashSet<Book>();
 		this.name = name;
 		this.description = description;
 	}
